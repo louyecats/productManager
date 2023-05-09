@@ -7,4 +7,7 @@ const ProductController = require('../controllers/product.controller');
 //on controller the .index value is a function that responds to the client request with a response object containing a "message" key and value of "Hello World".
 module.exports = (app) => {
     app.post('/', ProductController.createProduct);
+    app.get('/', ProductController.getAllProducts); 
+//can be the same route as POST as long as we have a different http verb
+    app.get('/:id', ProductController.getOneProduct);
 }

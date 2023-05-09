@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
-const ProductForm = () => {
+const ProductForm = (props) => {
+    const {product, setProduct} = props;
     //keep track of what is being typed via useState hook
     const [title, setTitle] = useState(""); 
     const [price, setPrice] = useState("");
@@ -19,13 +20,17 @@ const ProductForm = () => {
             .then(res => {
                 console.log(res); // always console log to get used to tracking your data!
                 console.log(res.data);
+                //update the lifted state of our product array to include the current value in state plus the single object created and returned from our post request
+                //so any time a new product is added, the setter will update the value in state to include the response from our controllers created logic & the response to client is the newly created document of all objects
+                setProduct([...product, res.data]);
             })
             .catch(err => console.log(err))
     }
 
     return (
         <div className="row">
-            <form className="col-md-4 offset-4 bg-light rounded p-2" onSubmit={onSubmitHandler}>
+            <form className="col-md-6 offset-3 bg-light rounded p-2" onSubmit={onSubmitHandler}>
+            <h2>New Item:</h2>
                 <div className="form-group">
                     <label htmlFor="title">Title:</label><br/>
                     {/* When the user types in this input, our onChange synthetic event 
