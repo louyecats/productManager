@@ -10,4 +10,7 @@ module.exports = (app) => {
     app.get('/', ProductController.getAllProducts); 
 //can be the same route as POST as long as we have a different http verb
     app.get('/:id', ProductController.getOneProduct);
+    app.patch('/edit/:id', ProductController.updateProduct);
+    app.delete('/:id', ProductController.deleteProduct); 
+//note: "id" on delete route MUST match params in controller
 }

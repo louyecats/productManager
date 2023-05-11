@@ -4,9 +4,11 @@ import axios from 'axios';
 const ProductForm = (props) => {
     const {product, setProduct} = props;
     //keep track of what is being typed via useState hook
+    
     const [title, setTitle] = useState(""); 
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
+
     //handler when the form is submitted
     const onSubmitHandler = (e) => {
         //prevent default behavior of the submit
@@ -18,8 +20,8 @@ const ProductForm = (props) => {
             description //shortcut syntax for description: description
         })
             .then(res => {
-                console.log(res); // always console log to get used to tracking your data!
-                console.log(res.data);
+                console.log("THIS IS RESPONSE", res); // always console log to get used to tracking your data!
+                console.log("THIS IS RESPONSE.DATA",res.data);
                 //update the lifted state of our product array to include the current value in state plus the single object created and returned from our post request
                 //so any time a new product is added, the setter will update the value in state to include the response from our controllers created logic & the response to client is the newly created document of all objects
                 setProduct([...product, res.data]);
