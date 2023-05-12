@@ -4,7 +4,7 @@ import axios from 'axios';
 const ProductForm = (props) => {
     const {product, setProduct} = props;
     //keep track of what is being typed via useState hook
-    
+
     const [title, setTitle] = useState(""); 
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
@@ -48,7 +48,7 @@ const ProductForm = (props) => {
                         <label htmlFor="description">Description:</label><br/>
                         <input type="text" name="description" id="description" className="form-control" onChange = {(e)=>setDescription(e.target.value)}/>
                 </div>
-                <div className="button btn btn-dark mt-3">Add Item</div>
+                <button className="btn btn-dark mt-3">Add Item</button>
             </form>
         </div>
     )

@@ -4,9 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const Update = (props) => {
     const { id } = useParams(); //this process is identical to the one we used with our Details.js component
-    const [title, setTitle] = useState();
-    const [price, setPrice] = useState();
-    const [description, setDescription] = useState();
+    const [title, setTitle] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
     const navigate = useNavigate();
     //imported useNavigate hook at top, set it to a variable and call on it below to return user to main component Main.js
     
@@ -14,12 +14,13 @@ const Update = (props) => {
     useEffect(() => {
         axios.get('http://localhost:8000/' + id)
             .then(res => {
+                console.log(res.data);
                 setTitle(res.data.title);
                 setPrice(res.data.price);
                 setDescription(res.data.description);
             })
             .catch(err => console.log(err))
-    }, [])
+    }, []) //useEffect will run whenever component is mounted to get the database info bc of empty dependency array
 
     //defined update method that sends a PATCH request to update the instance in database
     const updateProduct = (e) => {
@@ -58,7 +59,7 @@ const Update = (props) => {
                     <input type="text" 
                     name="description" 
                     value={description} 
-                    onChange={(e) => { setTitle(e.target.description) }} />
+                    onChange={(e) => { setDescription(e.target.description) }} />
                 </p>
                 <input type="submit" />
             </form>
